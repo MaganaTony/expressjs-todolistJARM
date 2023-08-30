@@ -1,18 +1,13 @@
-import express, { json } from "express"
-import { loggerMiddleware } from "./src/middleware/logger"
-import { jsonParser, xmlParser } from "./src/middleware/bodyParser"
-import todoListRouter from "./src/routes/todoListRoutes"
+import express from "express"
+import { jsonParser } from "./src/middleware/bodyParser"
+import tasksRouter from "./src/routers/tasksRouter"
 
 const app = express()
 const port = 3001
 
-app.use(
-    jsonParser,
-    xmlParser,
-    loggerMiddleware
-)
+app.use(jsonParser)
 
-app.use(todoListRouter)
+app.use(tasksRouter)
 
 app.listen(port, () => {
     console.log(`Aplicacion escuchando por el puerto ${port}`)
