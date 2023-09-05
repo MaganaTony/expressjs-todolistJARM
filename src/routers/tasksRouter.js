@@ -1,16 +1,21 @@
 import { Router } from "express"
-import {} from "../controllers/tasksController"
+import { 
+    createTask,
+    getTasks,
+    getTaskById,
+    updateTaskById,
+    deleteTaskById
+} from "../controllers/tasksController"
 
 const tasksRouter = Router()
 
-tasksRouter.route("/todo-list")
-    // .get(getTodoLists)
-    // .post(newTodoList)
-    // .post(xmlParser)
+tasksRouter.route("/tasks")
+     .get(getTasks)
+     .post(createTask)
 
-    tasksRouter.route("/todo-list/:taskId")
-    // .get(getTodoList)
-    // .put(updateTask)
-    // .delete(deleteTask)
+    tasksRouter.route("/tasks/:id")
+     .get(getTaskById)
+     .put(updateTaskById)
+     .delete(deleteTaskById)
 
 export default tasksRouter
