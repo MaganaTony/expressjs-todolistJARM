@@ -32,13 +32,26 @@ export const getUsers = async(_, response) => {
 
 export const getUserById = async(request, response) => {
     const { id } = request.params
-    const user = await User.findById(id)
+
+    const user = await User.findById(id).populate('tasks')
+
     if (!user) {
         response.status(404).send("no existe el registro en la base de datos")
     }
     response.status(200).send(user)
 }
 
+export const getUserTasks = async (request, response) => {
+    const { id } = request.params
+
+    const user = await User.findById(id).populate("tasks")
+
+    if (!user) {
+        response.status(404).send({ message: "Ya no existe el usuario en la base de datos" })
+    }
+
+    response.status(200).send(user)
+}
 
 export const updateUserById = async(request, response) => {
     // obtener datos

@@ -1,4 +1,5 @@
 import Task from "../models/Task"
+import User from "../models/Users"
 
 export const createTask = async (request, response) => {
     // obtener la informacion que envia el cliente
@@ -6,13 +7,21 @@ export const createTask = async (request, response) => {
     // utilizando el objecto body
   
     try {
-        const { name,complete } = request.body
+        const { name, complete, userId } = request.body
+
+        const user = await User.findById(userId)
+        console.log(user);
+
         const newTask = new Task({
             name,
-            complete
+            complete,
+            user
         })
-    
-        await newTask.save()
+        
+        const savedTask = await newTask.save()
+        user.tasks.push(savedTask)
+
+        await user.save()
     
         response.status(201).send(newTask)
         

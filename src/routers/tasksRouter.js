@@ -12,8 +12,8 @@ const tasksRouter = Router()
 tasksRouter.route("/tasks")
      .get(getTasks)
      .post(createTask)
-
-    tasksRouter.route("/tasks/:id")
+     
+tasksRouter.route("/tasks/:id")
      .get(getTaskById)
      .put(updateTaskById)
      .delete(deleteTaskById)

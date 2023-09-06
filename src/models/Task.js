@@ -7,6 +7,11 @@ const taskSchema = new Schema({
         type: String,
         required: [ true, "El nombre de la tarea es requerido"]
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users',
+        required: true
+    },
     complete: Boolean,
 }, { timestamps: true })
 

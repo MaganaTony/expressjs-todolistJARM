@@ -4,7 +4,8 @@ import {
     getUsers, 
     createUser,
     updateUserById, 
-    deleteUserById
+    deleteUserById,
+    getUserTasks
 } from "../controllers/usersController";
 
 const usersRouter = Router()
@@ -18,4 +19,5 @@ usersRouter.route("/users/:id")
     .put(updateUserById)
     .delete(deleteUserById)
 
+usersRouter.route("/users/:id/tasks").get(getUserTasks)
     export default usersRouter

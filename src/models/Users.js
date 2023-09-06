@@ -11,6 +11,10 @@ const userSchema = new Schema({
     name: String,
     lastName: String,
     complete: Boolean,
+    tasks: [{
+        type: Schema.Types.ObjectId,
+        ref: 'tasks',
+    }]
 }, { timestamps: true })
 
 const User = model("users", userSchema)
