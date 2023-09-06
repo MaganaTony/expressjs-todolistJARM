@@ -10,6 +10,10 @@ const userSchema = new Schema({
     },
     name: String,
     lastName: String,
+    password: {
+        type: String,
+        required: true
+    },
     complete: Boolean,
     tasks: [{
         type: Schema.Types.ObjectId,
