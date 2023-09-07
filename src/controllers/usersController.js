@@ -31,6 +31,8 @@ export const getUsers = async(_, response) => {
 }
 
 export const getUserById = async(request, response) => {
+    console.log(request.user)
+
     const { id } = request.params
 
     const user = await User.findById(id).populate('tasks')

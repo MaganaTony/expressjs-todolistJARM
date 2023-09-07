@@ -7,6 +7,7 @@ import {
     deleteUserById,
     getUserTasks
 } from "../controllers/usersController";
+import { authorizationMiddleware } from "../middleware/authorization";
 
 const usersRouter = Router()
 
@@ -15,7 +16,7 @@ usersRouter.route("/users")
     .post(createUser)    
 
 usersRouter.route("/users/:id")
-    .get(getUserById)
+    .get(authorizationMiddleware, getUserById)
     .put(updateUserById)
     .delete(deleteUserById)
 
